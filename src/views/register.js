@@ -5,15 +5,19 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ToastAndroid,
 } from 'react-native';
 import axios from 'axios';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 function RegistrationPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
 
-  const handleRegistration = () => {
+  const handleRegistration = ({ onRegistrationSuccess }) => {
     // 构造要发送到服务器的数据
     const data = {
       email: email,
@@ -34,11 +38,31 @@ function RegistrationPage() {
       .then((response) => {
         // 处理注册成功的响应
         console.log('Registration successful:', response.data);
+        AsyncStorage.setItem('token', response.data)
+        .then(() => {
+          console.log('Cookie保存成功');
+          onRegistrationSuccess(true);
+        })
+        .catch((error) => {
+              console.error('Cookie保存失败:', error);
+
+         });
         // 在这里可以进行页面导航或其他操作
       })
       .catch((error) => {
         // 处理注册失败的情况
+        if(error.response.data.message=="用戶已存在"){
+            ToastAndroid.showWithGravity(
+              '用戶已存在',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+        }
         console.error('Error during registration:', error);
+                        console.error('Error Message:', error.message);
+  console.error('Error Response Data:', error.response.data);
+  console.error('Error Response Status:', error.response.status);
+  console.error('Error Response Headers:', error.response.headers);
         // 可以向用户显示错误消息或按需处理错误
       });
   };
