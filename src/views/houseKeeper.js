@@ -26,51 +26,59 @@ const Tab = createBottomTabNavigator();
 import RegisterPage from './SettingPage'
   
 import axios from 'axios'; // 引入axios
+import hotelImage from '../../assets/hotel.jpg';
+import BottomNav from '../components/BottomNav'
+import { faker } from '@faker-js/faker';
 
-const data = [
-  {
-    id: '1',
-    roomCount: '2500',
-    imageSource: require('../../assets/hotel.jpg'),
-    hotelName:"台中大毅老爺行旅",
-    dateTime:'2021/10/01-10/16',
-    address:'台中市西區英才路601號'
-  },
-  {
-    id: '2',
-    roomCount: '2500',
-    imageSource: require('../../assets/hotel.jpg'),
-     hotelName:"台中大毅老爺行旅",
-    dateTime:'2021/10/01-10/16',
-    address:'台中市西區英才路601號'
-  },
-  // 添加更多数据项
-];
+const data = [];
+// const data = [
+//   {
+//     id: '1',
+//     roomCount: '2500',
+//     imageSource: require('../../assets/hotel.jpg'),
+//     hotelName:"台中大毅老爺行旅",
+//     dateTime:'2021/10/01-10/16',
+//     address:'台中市西區英才路601號'
+//   },
+//   {
+//     id: '2',
+//     roomCount: '2500',
+//     imageSource: require('../../assets/hotel.jpg'),
+//      hotelName:"台中大毅老爺行旅",
+//     dateTime:'2021/10/01-10/16',
+//     address:'台中市西區英才路601號'
+//   },
+//   // 添加更多数据项
+// ];
+
+
+const generateFakeHotel = (id) => {
+    const DT = faker.date.between;
+    const hotelName = "台中大毅老爺行旅";
+  return {
+    id: id.toString(),
+    roomCount: 2500,
+    imageSource: hotelImage,
+    hotelName: hotelName,
+    dateTime: "2021/10/01-10/16",
+    address: "台中市西區英才路601號"
+  };
+}
+
+for (let i = 1; i <= 20; i++) { 
+  data.push(generateFakeHotel(i));
+}
 
 
 const  houseKeeper = () => {
-  const [pageIndex,setPageIndex] = useState(0);
-  const [text, onChangeText] = React.useState('');
  
-  const [selectedCity, setSelectedCity] = useState(''); // 初始值为空
- const ProfileScreen = () => {
-  return (
-    <View>
-      <Text>Welcome to the Profile Screen!</Text>
-      {/* 在这里添加更多的内容和功能 */}
-    </View>
-  );
-}
+ const [selectedCity, setSelectedCity] = useState(''); // 初始值为空
+
   const Home = () => {
     return(
       <View>
         <Text>Home</Text>
-        <TextInput
-        style={styles.input}    
-        onChangeText={onChangeText}
-        placeholder='輸入待辦'
-        value={text}
-      />
+       
       </View>
     )
   }
@@ -98,16 +106,11 @@ const  houseKeeper = () => {
                     <Picker.Item label="桃園市" value="桃園市" />
                
                 </Picker>           
-           
            </View>
 
             <View style={{flex:.01}}>
             </View>
 
-
-         
-      
-         
             <View style={styles.pickerContainer}>
                 <Picker
                     selectedValue={selectedCity}
@@ -119,26 +122,26 @@ const  houseKeeper = () => {
                    
                 </Picker>           
            
-           </View>
+            </View>
 
 
 
             <View style={{flex:.01}}>
             </View>
      
-         <View style={{flex:.2,justifyContent:'center',alignItems:'center'}}>
+            <View style={{flex:.2,justifyContent:'center',alignItems:'center'}}>
 
-            <TouchableOpacity
-            style={{backgroundColor:'#fbdf58',padding:5,borderRadius:5}}
-            >
-            <Text
-            style={{fontSize:18,fontWeight:'bold'}}
-            >刊登</Text>
-            </TouchableOpacity>
-         
-         
-         
-         </View>
+                <TouchableOpacity
+                style={{backgroundColor:'#fbdf58',padding:5,borderRadius:5}}
+                >
+                <Text
+                style={{fontSize:18,fontWeight:'bold'}}
+                >刊登</Text>
+                </TouchableOpacity>
+            
+            
+            
+            </View>
        </View>    
        <View style={styles.ListViewContainer}>
 
@@ -153,134 +156,7 @@ const  houseKeeper = () => {
 
        </View>    
        <View style={styles.BottomNavgationContainer}>
- 
-
-<NavigationContainer>
-    <Tab.Navigator
-
-      options={{
-         tabBarIcon: null,
-      }}
- 
-    >
-      <Tab.Screen 
-      name="接單管理"
-      options={{
-        tabBarLabel: ({ focused }) => (
-          <CustomTabLabel
-            
-            label="接單管理"
-            focused={focused}
-            icon={faBullhorn} // 指定对应的图标
-          />
-        ),
-         tabBarIcon: ({ focused }) => ( // 将这里的tabBarIcon设置为null
-          <CustomTabLabel
-            label=""
-            focused={focused}
-            icon={null}
-          />
-        ),
-        
-      }}
-      component={Home}  />
-
-      <Tab.Screen 
-      name="問答"
-      options={{
-        tabBarLabel: ({ focused }) => (
-          <CustomTabLabel
-            label="問答"
-            focused={focused}
-            icon={faComment} // 指定对应的图标
-          />
-        ),
-
-        tabBarIcon: ({ focused }) => ( // 将这里的tabBarIcon设置为null
-          <CustomTabLabel
-            label=""
-            focused={focused}
-            icon={null}
-          />
-        ),
-      }}
-      component={Home}  />
-
-
-       <Tab.Screen 
-      name="打卡"
-      options={{
-        tabBarLabel: ({ focused }) => (
-          <CustomTabLabel
-            label="打卡"
-            focused={focused}
-            icon={faBookmark} // 指定对应的图标
-          />
-        ),
-         tabBarIcon: ({ focused }) => ( // 将这里的tabBarIcon设置为null
-          <CustomTabLabel
-            label=""
-            focused={focused}
-            icon={null}
-          />
-        ),        
-      }}
-      component={Home}  />
-
-
-       <Tab.Screen 
-      name="的行事曆"
-      options={{
-        tabBarLabel: ({ focused }) => (
-          <CustomTabLabel
-            label="的行事曆"
-            focused={focused}
-            icon={faCalendar} // 指定对应的图标
-          />
-        ),
-         tabBarIcon: ({ focused }) => ( // 将这里的tabBarIcon设置为null
-          <CustomTabLabel
-            label=""
-            focused={focused}
-            icon={null}
-          />
-        ),        
-      }}
-      component={Home}  />
- 
-
-
-       <Tab.Screen 
-      name="會員中心"
-      options={{
-        tabBarIcon: null,
-        tabBarLabel: ({ focused }) => (
-          <CustomTabLabel
-            label="會員中心"
-            focused={focused}
-            icon={faUser} // 指定对应的图标
-          />
-        ),
-         tabBarIcon: ({ focused }) => ( // 将这里的tabBarIcon设置为null
-          <CustomTabLabel
-            label=""
-            focused={focused}
-            icon={null}
-          />
-        ),        
-      }}
-      component={Home}  />
- 
-
-
-
- 
-    </Tab.Navigator>
-</NavigationContainer>
-
-
-
- 
+         <BottomNav />
        </View>
        
        
@@ -293,7 +169,6 @@ const styles = StyleSheet.create({
     borderWidth: .5, // 添加边框
     borderColor: '#ccc', // 边框颜色
     borderRadius: 4, // 边框圆角
-    
     flex:.4,
   },    
   input: {
@@ -314,13 +189,13 @@ const styles = StyleSheet.create({
   },
   filterContainer:{
         backgroundColor:"white",
-        flex: 1,
+        flex: .8,
         flexDirection:'row',
         padding:2
   },
   ListViewContainer:{
         // backgroundColor:"green",
-        flex: 7,
+        flex: 7.2,
   },
   BottomNavgationContainer:{
         backgroundColor:"yellow",

@@ -1190,6 +1190,11 @@
   "resolved" "https://registry.npmjs.org/@eslint/js/-/js-8.49.0.tgz"
   "version" "8.49.0"
 
+"@faker-js/faker@^8.1.0":
+  "integrity" "sha512-38DT60rumHfBYynif3lmtxMqMqmsOQIxQgEuPZxCk2yUYN0eqWpTACgxi0VpidvsJB8CRxCpvP7B3anK85FjtQ=="
+  "resolved" "https://registry.npmjs.org/@faker-js/faker/-/faker-8.1.0.tgz"
+  "version" "8.1.0"
+
 "@fortawesome/fontawesome-common-types@6.4.2":
   "integrity" "sha512-1DgP7f+XQIJbLFCTX1V2QnxVmpLdKdzzo2k8EmvDOePfchaIGQ9eCHj2up3/jNEbZuBqel5OxiaOJf37TWauRA=="
   "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.4.2.tgz"

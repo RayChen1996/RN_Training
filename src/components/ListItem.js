@@ -1,12 +1,9 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
- 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMapMarker, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
+
 
 const ListItem = ({ item }) => {
   return (
@@ -52,24 +49,25 @@ const ListItem = ({ item }) => {
 }
 
 const styles = StyleSheet.create({
-    outContainer:{
-        borderBottomColor: '#fae2bd',
+   outContainer:{
+        borderColor: '#fae2bd',
         borderWidth: 1,
         margin:5,
         borderRadius:15,
-    },
+  },
   container: {
+
+
+    borderWidth: .5,
+    borderColor: '#52cabe',
+
     flexDirection: 'row',
     alignItems: 'center',
- 
-    borderWidth: 1,
-    borderBottomColor: '#52cabe',
     flex:1,
     margin:.15,
     flexDirection:'row',
     padding:5,
     borderRadius:15,
-
   },
   image: {
     width: 75,
