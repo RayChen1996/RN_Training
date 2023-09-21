@@ -1,12 +1,10 @@
 
 import React,{useState,useEffect} from 'react';
-// import 'react-native-gesture-handler';
 import {
   SafeAreaView,
   View,
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCalendar,faBullhorn, faEnvelope, faComment,faBookmark,faUser } from '@fortawesome/free-solid-svg-icons'; 
 import { NavigationContainer } from '@react-navigation/native';
 import CustomTabLabel from '../components/CustomTabLabel'

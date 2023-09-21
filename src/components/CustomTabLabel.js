@@ -7,7 +7,7 @@ const CustomTabLabel = ({ label, focused, icon }) => {
   return (
     <View style={{ alignItems: 'center' }}>
       <FontAwesomeIcon icon={icon} size={20}     color={focused ? '#fae2bd' : '#52cabe'} />
-      <Text style={{ color: focused ? 'blue' : 'black', fontSize: 12 }}>
+      <Text style={{ color: focused ? '#fae2bd' : '#52cabe' , fontSize: 12 }}>
         {label}
       </Text>
     </View>
