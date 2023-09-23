@@ -24,12 +24,31 @@ import BottomNav from '../components/BottomNav'
 import { faker } from '@faker-js/faker';
 
 const data = [];
+
+const filterCountry = []
+
+for(let i = 0;i<10;i++){
+filterCountry.push(faker.location.country())
+}
+
+
+
 const generateFakeHotel = (id) => {
 
-  const hotelName = faker.name.firstName() + ' ' + faker.name.lastName() + ' Hotel';
-  const address = faker.address.streetAddress() + ', ' + faker.address.city();
-  const dateTime = `${faker.date.between('2023-09-01', '2023-10-30').toLocaleDateString()} - ${faker.date.between('09-01', '10-30').toLocaleDateString()}` ;
+  const hotelName = faker.person.firstName()  + ' ' + faker.person.lastName() + ' Hotel';
+  const Address =   faker.location.country()  ;
+  const ary = faker.date.betweens({ from: '2023-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
+  const formattedDates = ary.map(date => {
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  });
+
+
+  const dateTime = `${formattedDates[0]} - ${formattedDates[1]}`  ;
   // 隨機選擇一張圖片
+
   const randomImage = hotelImages[Math.floor(Math.random() * hotelImages.length)];
 
   return {
@@ -38,7 +57,7 @@ const generateFakeHotel = (id) => {
     imageSource: randomImage, // 替換為您的圖片URL
     hotelName: hotelName,
     dateTime: dateTime,
-    address: address,
+    address: Address,
   };
 }
 
@@ -47,27 +66,28 @@ for (let i = 1; i <= 10; i++) {
 }
 
 const  houseKeeper = () => {
- const [selectedCity, setSelectedCity] = useState(''); // 初始值为空
+ const [selectedCity, setSelectedCity] = useState('縣市'); //
 
   return (
     <View style={styles.container}>
        <View style={styles.headerContainer}>
-          <Text style={{color:'white',fontWeight:'bold', paddingLeft:10,}}>houseKeeper</Text>
+          <Text style={{color:'white',fontWeight:'bold',fontSize:24, paddingLeft:10,}}>houseKeeper</Text>
           <Text style={{color:'white' ,paddingLeft:10}}>潔易管理顧問有限公司</Text>
        </View>
        <View style={styles.filterContainer}>
            <View style={{flex:.5}}>
            </View>
            <View style={[styles.pickerContainer,{color:'#fff'}]}>
-                <Picker
-                    selectedValue={selectedCity}
-                    style={{color:'black'}}
-                    onValueChange={(itemValue, itemIndex) => setSelectedCity(itemValue)}
-                >
-                    <Picker.Item label="縣市" value="縣市" />
-                    <Picker.Item label="新北市" value="新北市" />
-                    <Picker.Item label="桃園市" value="桃園市" />
-                </Picker>           
+              <Picker
+                selectedValue={selectedCity}
+                style={{ color: 'black' }}
+                onValueChange={(itemValue, itemIndex) => setSelectedCity(itemValue)}
+              >
+                <Picker.Item label="縣市" value="縣市" />
+                {filterCountry.map((country, index) => (
+                  <Picker.Item key={index} label={country} value={country} />
+                ))}
+              </Picker>        
            </View>
 
           <View style={{flex:.1}}>
@@ -87,7 +107,7 @@ const  houseKeeper = () => {
 
            <View style={{flex:.1}}>
            </View>
-           <View style={{flex:1.5,padding:5, }}>
+           <View style={{flex:1.5, }}>
                 <TouchableOpacity
                 style={{
                   backgroundColor:'#fbdf58',
@@ -151,7 +171,7 @@ const styles = StyleSheet.create({
   },
   headerContainer:{
     backgroundColor:"#52cabe",
-    flex: 1,
+    flex: .8,
     justifyContent:'center',
   },
   filterContainer:{

@@ -6,8 +6,8 @@ const ListItem = ({ item }) => {
   return (
     <View style={styles.outContainer}>
         <View style={styles.container}>
-            <View style={{flex:3,flexDirection:'column',  }}>
-                <View style={{ flex:.55, marginTop:5,marginLeft:15,  justifyContent:'flex-start',flexDirection:'column',alignItems:'flex-end'}}>
+            <View style={{flex:.3,flexDirection:'column'  }}>
+                <View style={{ flex:.55, marginTop:5,  justifyContent:'flex-start',flexDirection:'column',alignItems:'flex-end'}}>
                   <Image source={item.imageSource} style={styles.image} />
                 </View>
                 
@@ -19,7 +19,8 @@ const ListItem = ({ item }) => {
                 </View>
 
             </View>
-            <View style={{flex:7,marginLeft:10}}>
+            {/*右欄*/}
+            <View style={{flex:.7,marginLeft:10,}}>
                 <Text style={{fontSize:18,color:'#000'  }}>{item.hotelName}</Text>
                 <View style={{marginTop:20}}>
                     <Text>

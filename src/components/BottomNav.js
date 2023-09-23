@@ -10,11 +10,23 @@ import { NavigationContainer } from '@react-navigation/native';
 import CustomTabLabel from '../components/CustomTabLabel'
 const Tab = createBottomTabNavigator();
 
+
+import OrderManagementScreen from '../views/houseKeeper'; // Import the actual component for "接單管理"
+import QAScreen from '../views/ChatPage'; // Import the actual component for "問答"
+import CheckInScreen from '../views/Attend'; // Import the actual component for "打卡"
+import CalendarScreen from '../views/schedule'; // Import the actual component for "的行事曆"
+import UserProfileScreen from '../views/memberPage';
+
+
 const Home = () =>{
     return(
         <View></View>
     )
 }
+
+
+
+
 const BottomNav = () =>{
     return(
     <NavigationContainer>
@@ -27,6 +39,7 @@ const BottomNav = () =>{
         >
         <Tab.Screen 
         name="接單管理"
+       
         options={{
             tabBarLabel: ({ focused }) => (
             <CustomTabLabel
@@ -45,7 +58,7 @@ const BottomNav = () =>{
             ),
             
         }}
-        component={Home}  />
+         component={Home}   />
 
         <Tab.Screen 
         name="問答"
